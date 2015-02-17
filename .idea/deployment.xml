@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="Intra-Stage">
+    <serverData>
+      <paths name="Intra-Stage">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="http://127.0.0.1/documents/Intra-Stage/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
