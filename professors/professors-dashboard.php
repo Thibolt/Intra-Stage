@@ -14,19 +14,20 @@ include ('professors-nav-sidebar-dashboard.php');
         <br/>
         <div class="placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzBEOEZEQiIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojZmZmO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=" data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200">
+                <canvas id="myChartSIO1SISR" width="200" height="200"></canvas>
                 <h4>SIO 1 SISR</h4>
+
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzM5REJBQyIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojMUUyOTJDO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=" data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="200x200">
+                <canvas id="myChartSIO2SISR" width="200" height="200"></canvas>
                 <h4>SIO 2 SISR</h4>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzBEOEZEQiIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojZmZmO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=" data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200">
+                <canvas id="myChartSIO1SLAM" width="200" height="200"></canvas>
                 <h4>SIO 1 SLAM</h4>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzM5REJBQyIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojMUUyOTJDO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=" data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="200x200">
+                <canvas id="myChartSIO2SLAM" width="200" height="200"></canvas>
                 <h4>SIO 2 SLAM</h4>
             </div>
         </div>
@@ -295,6 +296,25 @@ include ('professors-nav-sidebar-dashboard.php');
 </div>
 </div>
 </div>
+<script type="javascript">
+var myChartSIO1SISR= document.getElementById("myChartSIO1SISR").getContext("2d");
+var SIO1SISR = new Chart(myChartSIO1SISR[0]).Pie(pieData, pieOptions);
+var pieData = [
+    {
+        value: 20,
+        color:"#878BB6"
+    },
+    {
+        value : 40,
+        color : "#4ACAB4"
+    }
+    ];
+
+    var pieOptions = {
+        segmentShowStroke : false,
+        animateScale : true
+    }
+</script>
 <?php
 include ('professors-footer.php');
 ?>
