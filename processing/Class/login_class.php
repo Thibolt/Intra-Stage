@@ -6,8 +6,8 @@
  * Time: 21:34
  */
 
-include ('database_connection.php');
-include ('config.cfg');
+include('database_connection.php');
+include('config.php');
 
 class Login {
 
@@ -19,7 +19,7 @@ class Login {
         $postPasswordProfessors = $_POST['professors_password'];
 
         if (isset($postLoginProfessors) && isset($postPasswordProfessors)) {
-            include ('./database-connection.php');
+            include ('database_connection.php');
             $connectionMysql = $connect->prepare($this->_requestConnectionProfessors);
             $connectionMysql->execute(array($postLoginProfessors,
                 $postPasswordProfessors
@@ -47,8 +47,25 @@ class Login {
             } else {
                 //unrecognized identifier
                 echo '<meta charset="utf-8"><body onLoad="alert(\'Identifiant ou mot de passe incorrect !\')">';
-                echo '<meta http-equiv="refresh" content="0;URL=../index.php">';
+                echo '<meta http-equiv="refresh" content="0;URL=../../index.php">';
             }
         }
     }
+
+    //Professors deconnection
+    public function LogoutProfessors() {
+        //Openning session
+        session_name('intra-stage');
+        session_start();
+
+        //It destroys our session variables
+        session_unset();
+
+        //We destroyed our session
+        session_destroy();
+
+        //Redirect to the home page
+        header('location: ' . $_SERVER["HOST_SERVER"] . '/www/Intra-Stage');
+    }
+
 }

@@ -11,7 +11,7 @@
  * database connection
  */
 
-include ('config.cfg');
+include('config.php');
 
 try {
     $connect = new PDO("mysql:host=$host;dbname=$database", $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));

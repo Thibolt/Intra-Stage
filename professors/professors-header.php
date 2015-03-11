@@ -1,6 +1,6 @@
 <?php
-include ('../processing/login_class.php');
-include ('../processing/dashboard_class.php');
+include('../processing/Class/login_class.php');
+include ('../processing/Class/dashboard_class.php');
 // Openning session
 session_name('intra-stage');
 session_start();
