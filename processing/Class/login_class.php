@@ -11,6 +11,16 @@ include('config.php');
 
 class Login {
 
+    //Session Control
+    public function controlSession() {
+        if ((!isset($_SESSION['professors_login'])) || ($_SESSION['professors_password'] == '')) {
+            // The variable $ _SESSION ['professors_login'] does not exist or it is empty
+            // <=> the person did NOT connected
+            header('location: ' . $_SERVER["HOST_SERVER"] . '/www/Intra-Stage');
+            exit();
+        }
+    }
+
     private $_requestConnectionProfessors = "SELECT * FROM professors WHERE professors_login=? AND professors_password= SHA1(?)";
 
     //Professors authentification
@@ -67,5 +77,7 @@ class Login {
         //Redirect to the home page
         header('location: ' . $_SERVER["HOST_SERVER"] . '/www/Intra-Stage');
     }
+
+
 
 }
