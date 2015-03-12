@@ -12,5 +12,4 @@ class Dashboard {
         $professorConnected = $_SESSION['professors_login'];
         echo $professorConnected;
     }
-
 }
