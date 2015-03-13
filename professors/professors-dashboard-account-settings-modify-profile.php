@@ -6,9 +6,11 @@ include ('professors-nav-sidebar-dashboard-account-settings-modify-profile.php')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header"><span class="glyphicon glyphicon-edit"></span> Modifier mon compte</h1>
     <form method="POST" action="">
-        <?php
-         $displayModifierMonProfil = new DisplayModifierMonProfil;
-        ?>
+    <?php
+        include ('../processing/Class/profile_class.php');
+        $displayAccountParameters=new Profile();
+        $displayAccountParameters -> DisplayModifyProfile();
+    ?>
 
         <br/>
         

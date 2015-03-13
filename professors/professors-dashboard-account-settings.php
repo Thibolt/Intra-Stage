@@ -10,8 +10,6 @@ include ('professors-nav-sidebar-dashboard-account-settings.php');
         $displayAccountParameters=new Profile();
         $displayAccountParameters -> DisplayProfile();
         ?>
-
-
 </div>
 </div><!--no delete-->
 </div><!--no delete-->
