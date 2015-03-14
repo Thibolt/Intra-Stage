@@ -296,24 +296,81 @@ include ('professors-nav-sidebar-dashboard.php');
 </div>
 </div>
 </div>
-<script type="javascript">
-var myChartSIO1SISR= document.getElementById("myChartSIO1SISR").getContext("2d");
-var SIO1SISR = new Chart(myChartSIO1SISR[0]).Pie(pieData, pieOptions);
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+//alert("loaded !");
 var pieData = [
     {
-        value: 20,
-        color:"#878BB6"
+        value: 300,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Red"
     },
     {
-        value : 40,
-        color : "#4ACAB4"
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Green"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Yellow"
     }
     ];
 
-    var pieOptions = {
-        segmentShowStroke : false,
-        animateScale : true
-    }
+    var SIO1SISR = new Chart($('#myChartSIO1SISR')[0].getContext("2d")).Pie(pieData, Chart.defaults.global);
+    var SIO2SISR = new Chart($('#myChartSIO2SISR')[0].getContext("2d")).Pie(pieData, Chart.defaults.global);
+    var SIO1SLAM = new Chart($('#myChartSIO1SLAM')[0].getContext("2d")).Pie(pieData, Chart.defaults.global);
+    var SIO2SLAM = new Chart($('#myChartSIO2SLAM')[0].getContext("2d")).Pie(pieData, Chart.defaults.global);
+    /*$.ajax({
+        method: "GET",
+        url: "getData.php",
+        error: function(e) {
+
+        },
+        success: function(e) {
+            SIO1SISR.addData(e.sio1_sisr);
+            SIO1SLAM.addData(e.sio1_sisr);
+        }
+    });*/
+
+    var res = <?php
+    $sio1_sisr = array(
+        0 => array(
+            "value" => 200
+        ),
+        1 => array(
+            "value" => 100
+        )
+    );
+
+    $sio2_sisr = array(
+        0 => array(
+            "value" => 200
+        ),
+        1 => array(
+            "value" => 100
+        )
+    );
+
+    $json = array(
+        "sio1_sisr" => $sio1_sisr,
+        "sio2_sisr" => $sio2_sisr
+    );
+
+    echo json_encode($json);
+    //echo "<pre>".print_r($json)."</pre>";
+
+    ?>;
+
+    console.log(res.sio1_sisr);
+});
+
+
 </script>
 <?php
 include ('professors-footer.php');
