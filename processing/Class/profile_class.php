@@ -85,11 +85,39 @@ class Profile {
                     <label for="new-password">Login :</label>
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                        <input type="text" class="form-control" id="professors_login" value="'.$row[professors_login].'">
+                        <input type="text" class="form-control" id="professors_login" value="'.$row[professors_login].'"e>
                     </div>
                 ';
         } else {
 
         }
     }
-}
+
+    public function ModifyProfile (){
+        session_name('intra-stage');
+        session_start();
+        include('database_connection.php');
+        $name = $_POST['name'];
+        $nameRegex = '/^[a-zA-Z -]+$/';
+        $firstName = $_POST['firstName'];
+        $firstNameRegex = '/^[a-zA-Z -]+$/';
+        $email = $_POST['email'];
+        $emailRegex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
+        $login = $_POST['login'];
+        $loginRegex = '/^[a-z0-9]+$/';
+        $onlineUser = $_SESSION['professors_login'];
+
+        $req = "SELECT professors_name, professors_first_name, professors_email, professors_login FROM professors WHERE professors_login LIKE '".$onlineUser."'";
+        $res = $connect->query($req);
+
+        if ($row = $res->fetch(PDO::FETCH_ASSOC)){
+
+            /*if(preg_match($nameRegex, $name) &&
+                preg_match($firstNameRegex, $firstName) &&
+                preg_match($emailRegex,$email) &&
+                preg_match($loginRegex, $login)){
+            }*/
+
+            }
+        }
+    }
