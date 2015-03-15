@@ -303,22 +303,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 //alert("loaded !");
 var pieData = [
     {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
+        value: 12,
+        color: "#4AB734",
+        label: "Stage trouvés"
     },
     {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    },
-    {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Yellow"
+        value: 20,
+        color: "#D9534F",
+        label: "Stage non trouvés"
     }
     ];
 
