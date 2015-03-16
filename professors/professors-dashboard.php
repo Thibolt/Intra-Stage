@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 var pieData = [
     {
         value: 12,
-        color: "#4AB734",
+        color: "#5CB85C",
         label: "Stage trouvés"
     },
     {

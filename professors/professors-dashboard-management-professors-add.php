@@ -8,7 +8,7 @@ include ('professors-nav-sidebar-dashboard-management-professors-add.php');
         <div class="alert alert-info">
         <p><span class="glyphicon glyphicon-info-sign"></span> Le mot de passe doit contenir au minimum quatre caractères !</p>   
     </div>
-    <form  class="form-horizontal" method="post" name="createProfessor" action="../processing/professors-management-professors-add.php">
+    <form  class="form-horizontal" method="post" name="createProfessor" action="../processing/professors-management-professors-add-process.php">
         <label for="create-professorName">Nom :</label>
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>

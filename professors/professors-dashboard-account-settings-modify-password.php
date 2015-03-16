@@ -8,7 +8,7 @@ include ('professors-nav-sidebar-dashboard-account-settings-modify-password.php'
     <div class="alert alert-info">
         <p><span class="glyphicon glyphicon-info-sign"></span> Votre mot de passe doit comporter au minimum quatre caractères !</p>
     </div>
-    <form name="" action="">
+    <form class="form-horizontal" name="New-Password" method="post" action="../processing/professors-modify-password-process.php">
         <label for="old-password">Ancien mot de passe :</label>
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>

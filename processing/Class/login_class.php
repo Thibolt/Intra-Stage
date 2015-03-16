@@ -77,7 +77,4 @@ class Login {
         //Redirect to the home page
         header('location: ' . $_SERVER["HOST_SERVER"] . '/www/Intra-Stage');
     }
-
-
-
-}
+}//end of the class

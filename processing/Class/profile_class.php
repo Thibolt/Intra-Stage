@@ -54,8 +54,7 @@ class Profile
         }
     }
 
-    public function ModifyProfile()
-    {
+    public function ModifyProfile(){
         session_name('intra-stage');
         session_start();
         include('database_connection.php');
@@ -103,4 +102,22 @@ class Profile
             }
         }
     }
-}//fin class
+
+    public function ModifyPassword(){
+        session_name('intra-stage');
+        session_start();
+        include('database_connection.php');
+        $currentPassword = $_POST['old_password'];
+        $newPassword = $_POST['new_password'];
+        $confirmationNewPassword = $_POST['confirm_newPassword'];
+        $sessionProfessors = $_SESSION['professors_login'];
+        $str = $_POST['confirm_newPassword'];
+
+        $req = "SELECT professors_login, professors_password FROM professors WHERE professors_login LIKE '" . $sessionProfessors . "'";
+        $res = $connect->query($req);
+
+        if ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+            echo $row['professors_password'];
+        }
+    }
+}//end of the class
