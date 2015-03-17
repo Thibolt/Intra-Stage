@@ -54,7 +54,8 @@ class Profile
         }
     }
 
-    public function ModifyProfile(){
+    public function ModifyProfile()
+    {
         session_name('intra-stage');
         session_start();
         include('database_connection.php');
@@ -77,47 +78,64 @@ class Profile
         if ($row = $res->fetch(PDO::FETCH_ASSOC)) {
 
             if (preg_match($idRegex, $id) && preg_match($nameRegex, $name) && preg_match($firstNameRegex, $firstName)
-                && preg_match($emailRegex, $email) && preg_match($loginRegex, $login)) {
-                if ($name <> $row['professors_name']){
+                && preg_match($emailRegex, $email) && preg_match($loginRegex, $login)
+            ) {
+                if ($name <> $row['professors_name']) {
                     $updt = $connect->prepare('UPDATE professors SET professors_name = :nameProfessors WHERE professors_login = :onlineProfessors');
                     $updt->execute(array('nameProfessors' => $name, 'onlineProfessors' => $onlineSession));
-                }
-                elseif ($firstName <> $row['professors_first_name']) {
+                } elseif ($firstName <> $row['professors_first_name']) {
                     $updt = $connect->prepare('UPDATE professors SET professors_first_name = :firstNameProfessors WHERE professors_login = :onlineProfessors');
                     $updt->execute(array('firstNameProfessors' => $firstName, 'onlineProfessors' => $onlineSession));
-                }
-                elseif ($email <> $row['professors_email']) {
+                } elseif ($email <> $row['professors_email']) {
                     $updt = $connect->prepare('UPDATE professors SET professors_email = :emailProfessors WHERE professors_login = :onlineProfessors');
                     $updt->execute(array('emailProfessors' => $email, 'onlineProfessors' => $onlineSession));
-                }
-                else {
+                } else {
                     $updt = $connect->prepare('UPDATE professors SET professors_login = :loginProfessors WHERE professors_login = :onlineProfessors');
                     $updt->execute(array('loginProfessors' => $login, 'onlineProfessors' => $onlineSession));
                     $_SESSION['professors_login'] = $login;
                 }
                 header('location: ../professors/professors-dashboard-account-settings.php');
-            }
-            else{
+            } else {
                 echo "error";
             }
         }
     }
 
-    public function ModifyPassword(){
+    public function ModifyPassword()
+    {
         session_name('intra-stage');
         session_start();
         include('database_connection.php');
-        $currentPassword = $_POST['old_password'];
-        $newPassword = $_POST['new_password'];
-        $confirmationNewPassword = $_POST['confirm_newPassword'];
+        $currentPassword = SHA1($_POST['old_password']);
+        $newPassword = SHA1($_POST['new_password']);
+        $confirmationNewPassword = SHA1($_POST['confirm_newPassword']);
         $sessionProfessors = $_SESSION['professors_login'];
-        $str = $_POST['confirm_newPassword'];
+        $str = strlen($newPassword);
 
         $req = "SELECT professors_login, professors_password FROM professors WHERE professors_login LIKE '" . $sessionProfessors . "'";
         $res = $connect->query($req);
 
         if ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-            echo $row['professors_password'];
+            if ($row['professors_login'] == $sessionProfessors && $row['professors_password'] == $currentPassword && $newPassword == $confirmationNewPassword && $currentPassword <> $newPassword) {
+                if ($str >= 4) {
+                    $updt = $connect->prepare('UPDATE professors SET professors_password=:password WHERE professors_login=:login');
+                    $updt->execute(array('password' => $confirmationNewPassword, 'login' => $sessionProfessors));
+                    echo '<meta charset="utf-8"><body onLoad="alert(\'Le mot de passe à bien été changé\')">';
+                    echo '<meta http-equiv="refresh" content="0;URL=../professors/professors-dashboard-account-settings-modify-password.php">';
+
+                } else {
+                    echo '<meta charset="utf-8"><body onLoad="alert(\'le mot de passe doit comporter au minimum 4 caractères !\')">';
+                    echo '<meta http-equiv="refresh" content="0;URL=../professors/professors-dashboard-account-settings-modify-password.php">';
+                }
+            } else {
+                echo '<meta charset="utf-8"><body onLoad="alert(\'Le changement n\'a pas pu être effectué, veuillez retenter l\opération\')">';
+                echo '<meta http-equiv="refresh" content="0;URL=../professors/professors-dashboard-account-settings-modify-password.php">';
+            }
+        } else {
+            // formulaire non rempli
+            echo '<meta charset="utf-8"><body onLoad="alert(\'Une erreur à été détecté, veuillez resaisir le formulaire de changement de mot de passe\')">';
+            echo '<meta http-equiv="refresh" content="0;URL=../professors/professors-dashboard-account-settings-modify-password.php">';
         }
+
     }
 }//end of the class
