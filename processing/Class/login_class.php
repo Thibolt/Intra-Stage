@@ -57,7 +57,7 @@ class Login {
             } else {
                 //unrecognized identifier
                 echo '<meta charset="utf-8"><body onLoad="alert(\'Identifiant ou mot de passe incorrect !\')">';
-                echo '<meta http-equiv="refresh" content="0;URL=../../index.php">';
+                echo '<meta http-equiv="refresh" content="0;URL=../index.php">';
             }
         }
     }
