@@ -8,18 +8,19 @@ include ('professors-nav-sidebar-dashboard-management-professors-delete.php');
     <div class="alert alert-info">
         <p><span class="glyphicon glyphicon-info-sign"></span> Veuillez sélectionner l'utilisateur à supprimer.</p>   
     </div>
-    <form name="" method="" action="">
+    <form name="delete_professor" method="post" action="../processing/professors-management-professors-delete-process.php">
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
             <select class="form-control" id="professor-deleted" name="professor_deleted" required="">
-                <option value="#"></option>
+                <?php
+                    include ('../processing/Class/professors_class.php');
+                    $displayListProfessors = new Professors();
+                    $displayListProfessors ->DisplayDeleteProfessors();
+                ?>
             </select>
         </div>
-
         <br/>
-
         <input type="hidden" id="date-time" name="date_time" value="#">
-
         <p class="center"><button class="btn btn-primary btn-lg btn-center" type="submit"><span class="glyphicon glyphicon-floppy-remove"></span> Supprimer</button></p>
     </form>
 </div>

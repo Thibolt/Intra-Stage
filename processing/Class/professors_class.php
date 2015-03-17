@@ -27,8 +27,7 @@ class Professors {
         }
     }
 
-    public function CreateProfessors()
-    {
+    public function CreateProfessors(){
         session_name('intra-stage');
         session_start();
         include('database_connection.php');
@@ -53,5 +52,20 @@ class Professors {
         else{
             echo "error";
         }
+    }
+
+    public function DisplayDeleteProfessors()
+    {
+        include('database_connection.php');
+        $req = "SELECT professors_id, professors_name, professors_first_name FROM professors";
+        $res = $connect->query($req);
+
+        while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+            echo '<option value="' . $row['professors_id'] . '">' . $row['professors_first_name'] . ' ' . $row['professors_name'] . '</option>';
+        }
+    }
+
+    public function DeleteProfessors(){
+
     }
 }//end of the class
